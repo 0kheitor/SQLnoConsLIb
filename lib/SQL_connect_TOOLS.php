@@ -244,12 +244,14 @@
     }
 
     function styleSheet(
-        $tableId = ".sfnc-table", $styleString_Table_Background = "#255255255", $styleString_Table_Header = "#ffa137ff",
-        $styleString_Buttons = "#ffd093ff", $styleString_textColor = "rgba(26, 26, 26, 1)",  $styleString_tagAColor = "#000000ff", 
-        $styleEvenRow = "#b8b8b8ff", $styleOddRow = "#9c9c9cff", $body_background = "#636363ff", 
-        $trHover = "#4444", $dark = false
+        $tableId = ".sfnc-table", $styleString_Table_Background = "#255255255", $styleString_Table_Header = "#2b75ffff",
+        $styleString_Buttons = "#4778ffff", $styleString_textColor = "rgba(26, 26, 26, 1)",  $styleString_tagAColor = "#ffffffff", 
+        $styleEvenRow = "#d8d8d8ff", $styleOddRow = "#c4c4c4ff", $body_background = "#ffffffff", 
+        $trHover = "#4444", $table_collapse = "collapse", $table_line_border_colors = "grey solid 1px", $dark = false
     ){
         if($dark){
+            $table_collapse = "separate";
+            $table_line_border_colors = "none";
             $tableId = ".sfnc-table";
             $styleString_Table_Background = "#1E1E1E";        
             $styleString_Table_Header = "#007B9E";       
@@ -264,6 +266,7 @@
         
         echo "<style>
         body{
+            user-select: none; /* you can remove this */
             background-color: $body_background;
         }
 
@@ -282,6 +285,8 @@
         }
 
         $tableId{
+            
+            border-collapse: $table_collapse;
             user-select: none;
             border: white; 
             padding: 5px; 
@@ -294,10 +299,12 @@
 
         $tableId tbody tr:nth-child(even){
             background-color: $styleEvenRow;
+            border: $table_line_border_colors;
         }
 
          $tableId tbody tr:nth-child(odd){
             background-color: $styleOddRow;
+            border: $table_line_border_colors;
         }
 
         $tableId tbody tr:hover{
